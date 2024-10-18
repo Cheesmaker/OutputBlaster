@@ -41,6 +41,7 @@ along with Output Blaster.If not, see < https://www.gnu.org/licenses/>.*/
 #include "Game Files/HOTD4VerA.h"
 #include "Game Files/HOTD4VerC.h"
 #include "Game Files/HarleyDavidson.h"
+#include "Game Files/Hummer.h"
 #include "Game Files/HummerExtreme.h"
 #include "Game Files/ID0V131.h"
 #include "Game Files/ID0V211.h"
@@ -322,6 +323,10 @@ DWORD WINAPI OutputsLoop(LPVOID lpParam)
 		else if (ReadWithoutCrashing((uint32_t*)0x8320C69) == (0x81DB3153))
 		{
 			game = new HummerExtreme;
+		}
+		else if (ReadWithoutCrashing((uint32_t*)0x8320C69) == (0x9AB3BC0))
+		{
+			game = new Hummer;
 		}
 		
 
