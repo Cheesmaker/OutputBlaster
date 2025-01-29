@@ -29,8 +29,18 @@ static int WindowsLoop()
 	Outputs->SetValue(OutputLampView4, !!(data & 0x40));
 	Outputs->SetValue(OutputRawLamps, data);
 
+	if (detectedGameId == 10) {
+		//do some custom stuff for this game
+	}
+	if (detectedGameId == 12)
+	{
+		//do some more custom stuff for this game :)
+		//And so on...
+	}
+
 	return 0;
 }
+static int detectedGameId = 0;
 
 static DWORD WINAPI OutputsAreGo(LPVOID lpParam)
 {
@@ -50,6 +60,30 @@ void M2Emulator::OutputsGameLoop()
 		Outputs->SetGame(m_game);
 		Outputs->Initialize();
 		Outputs->Attached();
+
+
+		if(FindWindowA(0, ("Sega Rally Championship"))) detectedGameId = 1;
+		if (FindWindowA(0, ("Daytona USA")))  detectedGameId = 2;
+		if (FindWindowA(0, ("Indianapolis 500 (Rev A, Deluxe)")))  detectedGameId = 3;
+		if (FindWindowA(0, ("Sega Touring Car Championship (Rev A)")))  detectedGameId = 4;
+		if (FindWindowA(0, ("Over Rev")))  detectedGameId = 5;
+		if (FindWindowA(0, ("Super GT 24h")))  detectedGameId = 6;
+		if (FindWindowA(0, ("Daytona USA '93 Edition")))  detectedGameId = 7;
+		if (FindWindowA(0, ("Daytona USA (Saturn Ads)")))  detectedGameId = 8;
+		if (FindWindowA(0, ("Daytona USA Special Edition"))) detectedGameId = 9;
+		if (FindWindowA(0, ("Daytona USA Turbo")))  detectedGameId = 10;
+		if (FindWindowA(0, ("Daytona USA Turbo (Rev A)")))  detectedGameId = 11;
+		if (FindWindowA(0, ("Daytona USA: GTX 2004")))  detectedGameId = 12;
+		if (FindWindowA(0, ("Daytona USA: To The Maxx")))  detectedGameId = 13;
+		if (FindWindowA(0, ("Sega Rally Championship (Rev B)")))  detectedGameId = 14;
+		if (FindWindowA(0, ("Sega Rally Pro Drivin'")))  detectedGameId = 15;
+		if (FindWindowA(0, ("Indianapolis 500 (Rev A, Twin, Newer rev)")))  detectedGameId = 16;
+		if (FindWindowA(0, ("Indianapolis 500 (Rev A, Twin, Older rev)")))  detectedGameId = 17;
+		if (FindWindowA(0, ("Sega Touring Car Championship")))  detectedGameId = 18;
+		if (FindWindowA(0, ("Sega Touring Car Championship (Rev B)")))  detectedGameId = 19;
+		if (FindWindowA(0, ("Over Rev (Model 2B)")))  detectedGameId = 20;
+
+
 		CreateThread(NULL, 0, OutputsAreGo, NULL, 0, NULL);
 		while (GetMessage(&Msg1, NULL, NULL, 0))
 		{
