@@ -194,6 +194,7 @@ void CruisnBlast::OutputsGameLoop()
 {
 	if (!init)
 	{
+		OutputDebugStringA("Output Blaster Loaded CRUISN");
 		Outputs = CreateOutputsFromConfig();
 		m_game.name = "CruisnBlast";
 		Outputs->SetGame(m_game);
