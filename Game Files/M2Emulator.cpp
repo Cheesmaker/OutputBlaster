@@ -14,7 +14,7 @@ You should have received a copy of the GNU General Public License
 along with Output Blaster.If not, see < https://www.gnu.org/licenses/>.*/
 
 #include "M2Emulator.h"
-
+static int detectedGameId = 0;
 static int WindowsLoop()
 {
 	INT_PTR Rambase = helpers->ReadIntPtr(0x1AA888, true);
@@ -40,7 +40,7 @@ static int WindowsLoop()
 
 	return 0;
 }
-static int detectedGameId = 0;
+
 
 static DWORD WINAPI OutputsAreGo(LPVOID lpParam)
 {
